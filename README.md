@@ -118,7 +118,8 @@ This is exactly how **finance, operations, and analytics teams** use Excel at sc
 ## 👨‍💻 Author
 
 **Sai Teja Bandaru**  
-Data Analytics & Automation Engineer  
+Data Analytics & Automation Engineer
+https://www.saitejabandaru.com/
 
 ---
 
