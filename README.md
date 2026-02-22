@@ -119,6 +119,7 @@ This is exactly how **finance, operations, and analytics teams** use Excel at sc
 
 **Sai Teja Bandaru**  
 Data Analytics & Automation Engineer
+
 https://www.saitejabandaru.com/
 
 ---
