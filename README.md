@@ -61,6 +61,15 @@ No more manual cleaning, copy-pasting, or broken formulas.
 ## 🗂️ Project Structure
 
 ```
+excel_automation_toolkit/
+  ├── cli.py
+  ├── data_loader.py
+  ├── preprocessing.py
+  ├── feature_engineering.py
+  ├── report_generator.py
+  ├── dashboard_sync.py
+  └── pipeline.py
+
 excel/
   ├── templates/      # Excel templates & dashboards
   └── macros/         # VBA automation scripts
@@ -75,6 +84,9 @@ python/
 data/
   ├── raw/            # Input files
   └── processed/     # Cleaned & enriched data
+
+tests/
+  └── test_pipeline.py
 ```
 
 ---
@@ -86,17 +98,46 @@ data/
 pip install -r requirements.txt
 ```
 
-2. Open the Excel dashboard:
-```
-excel/templates/dashboard.xlsx
+2. Run the sample automation from the command line:
+```bash
+python -m excel_automation_toolkit run \
+  --input data/raw/sample_sales.csv \
+  --output data/processed/automation_report.xlsx \
+  --date-column "Order Date" \
+  --numeric-column Revenue \
+  --numeric-column Units \
+  --dimension Region \
+  --amount-column Revenue
 ```
 
-3. Click **“Run Automation”**
+3. Or import the VBA module into your Excel dashboard workbook:
+```
+excel/macros/RunAutomation.bas
+```
+
+4. Click **“Run Automation”**
 The VBA macro will:
 - Export data
 - Trigger Python pipelines
 - Re-import clean data
 - Refresh dashboards
+
+The generated workbook includes:
+- `Raw Data`
+- `Processed Data`
+- `Summary`
+- `Metadata`
+
+---
+
+## 🧪 Tests
+
+Install development dependencies and run:
+
+```bash
+pip install -r requirements-dev.txt
+pytest
+```
 
 ---
 
