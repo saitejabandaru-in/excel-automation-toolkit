@@ -12,6 +12,12 @@
   <img src="https://img.shields.io/badge/VBA-Macros-orange?style=flat-square"/>
   <img src="https://img.shields.io/badge/BI-Dashboards-brightgreen?style=flat-square"/>
   <img src="https://img.shields.io/badge/Status-Active-success?style=flat-square"/>
+  <a href="https://pypi.org/project/excel-automation-toolkit/">
+    <img src="https://img.shields.io/pypi/v/excel-automation-toolkit?style=flat-square&label=PyPI"/>
+  </a>
+  <a href="https://github.com/saitejabandaru-in/excel-automation-toolkit/releases/tag/v0.1.0">
+    <img src="https://img.shields.io/github/v/release/saitejabandaru-in/excel-automation-toolkit?style=flat-square"/>
+  </a>
 </p>
 
 # 📊 Excel Automation Toolkit
@@ -93,7 +99,16 @@ tests/
 
 ## 🚀 How to Run
 
-1. Install the package locally from the repository:
+1. Install the package from PyPI:
+```bash
+pip install excel-automation-toolkit
+```
+
+PyPI project: https://pypi.org/project/excel-automation-toolkit/
+
+Latest GitHub release: https://github.com/saitejabandaru-in/excel-automation-toolkit/releases/tag/v0.1.0
+
+2. Or install locally from the repository:
 ```bash
 pip install .
 ```
@@ -103,7 +118,7 @@ For development:
 pip install -e ".[dev]"
 ```
 
-2. Run the sample automation from the command line:
+3. Run the sample automation from the command line:
 ```bash
 excel-automation run \
   --input data/raw/sample_sales.csv \
@@ -115,12 +130,12 @@ excel-automation run \
   --amount-column Revenue
 ```
 
-3. Or import the VBA module into your Excel dashboard workbook:
+4. Or import the VBA module into your Excel dashboard workbook:
 ```
 excel/macros/RunAutomation.bas
 ```
 
-4. Click **“Run Automation”**
+5. Click **“Run Automation”**
 The VBA macro will:
 - Export data
 - Trigger Python pipelines
@@ -157,7 +172,15 @@ python -m build
 python -m twine check dist/*
 ```
 
+Package release links:
+- PyPI: https://pypi.org/project/excel-automation-toolkit/
+- PyPI 0.1.0: https://pypi.org/project/excel-automation-toolkit/0.1.0/
+- GitHub releases: https://github.com/saitejabandaru-in/excel-automation-toolkit/releases
+- GitHub v0.1.0: https://github.com/saitejabandaru-in/excel-automation-toolkit/releases/tag/v0.1.0
+
 Releases are automated through GitHub Actions. Push a semantic version tag such as `v0.1.0`, or create a `release/v0.1.0` branch, to build the source distribution, wheel, and GitHub release assets.
+
+No PyPI API tokens or release secrets are stored in this repository. Use environment variables, PyPI Trusted Publishing, or a local `.pypirc` outside version control for future uploads.
 
 ---
 
