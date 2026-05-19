@@ -157,7 +157,7 @@ python -m build
 python -m twine check dist/*
 ```
 
-Tagged releases are automated through GitHub Actions. Push a semantic version tag such as `v0.1.0` to build the source distribution, wheel, and GitHub release assets.
+Releases are automated through GitHub Actions. Push a semantic version tag such as `v0.1.0`, or create a `release/v0.1.0` branch, to build the source distribution, wheel, and GitHub release assets.
 
 ---
 
