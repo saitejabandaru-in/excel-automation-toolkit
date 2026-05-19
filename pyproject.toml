@@ -41,10 +41,12 @@ Issues = "https://github.com/saitejabandaru-in/excel-automation-toolkit/issues"
 [project.optional-dependencies]
 dev = [
   "build>=1.2.0",
-  "pytest>=8.0.0"
+  "pytest>=8.0.0",
+  "twine>=5.0.0"
 ]
 release = [
   "build>=1.2.0",
+  "pytest>=8.0.0",
   "twine>=5.0.0"
 ]
 
