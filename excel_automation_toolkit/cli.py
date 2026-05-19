@@ -3,11 +3,13 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
+from . import __version__
 from .pipeline import PipelineConfig, run_pipeline
 
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Run an Excel automation pipeline.")
+    parser.add_argument("--version", action="version", version=f"%(prog)s {__version__}")
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     run = subparsers.add_parser("run", help="Clean input data and generate an Excel report.")
@@ -56,4 +58,3 @@ def _parse_sheet_name(value: str) -> str | int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

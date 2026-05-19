@@ -5,6 +5,8 @@ from pathlib import Path
 import pandas as pd
 from openpyxl import load_workbook
 
+from excel_automation_toolkit.cli import main
+from excel_automation_toolkit.data_loader import load_table
 from excel_automation_toolkit.pipeline import PipelineConfig, run_pipeline
 from excel_automation_toolkit.preprocessing import clean_dataframe
 
@@ -56,3 +58,42 @@ def test_pipeline_generates_formatted_workbook(tmp_path: Path) -> None:
     assert rows[0] == ("region", "revenue_count", "revenue_sum", "revenue_mean")
     assert ("North", 2, 350, 175) in rows
 
+
+def test_cli_run_generates_report(tmp_path: Path, capsys) -> None:
+    input_path = tmp_path / "sales.csv"
+    output_path = tmp_path / "cli-report.xlsx"
+    input_path.write_text("Region,Revenue\nNorth,100\nSouth,75\n", encoding="utf-8")
+
+    exit_code = main(
+        [
+            "run",
+            "--input",
+            str(input_path),
+            "--output",
+            str(output_path),
+            "--numeric-column",
+            "Revenue",
+            "--dimension",
+            "Region",
+            "--amount-column",
+            "Revenue",
+        ]
+    )
+
+    assert exit_code == 0
+    assert output_path.exists()
+    assert f"Report generated: {output_path}" in capsys.readouterr().out
+
+
+def test_loading_all_excel_sheets_raises_clear_error(tmp_path: Path) -> None:
+    input_path = tmp_path / "multi-sheet.xlsx"
+    with pd.ExcelWriter(input_path, engine="openpyxl") as writer:
+        pd.DataFrame({"Region": ["North"]}).to_excel(writer, sheet_name="Sales", index=False)
+
+    try:
+        load_table(input_path, sheet_name=None)
+    except ValueError as exc:
+        assert "Expected a single worksheet" in str(exc)
+        assert "Sales" in str(exc)
+    else:
+        raise AssertionError("Expected load_table to reject multiple worksheet output")

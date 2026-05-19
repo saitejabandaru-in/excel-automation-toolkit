@@ -8,17 +8,44 @@ version = "0.1.0"
 description = "Hybrid Excel and Python automation toolkit for cleaning data and generating reports."
 readme = "README.md"
 requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
 authors = [
   { name = "Sai Teja Bandaru" }
+]
+keywords = ["automation", "excel", "openpyxl", "pandas", "reporting"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: End Users/Desktop",
+  "Intended Audience :: Financial and Insurance Industry",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Office/Business :: Financial :: Spreadsheet",
+  "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 dependencies = [
   "openpyxl>=3.1.2",
   "pandas>=2.2.0"
 ]
 
+[project.urls]
+Homepage = "https://github.com/saitejabandaru-in/excel-automation-toolkit"
+Repository = "https://github.com/saitejabandaru-in/excel-automation-toolkit"
+Issues = "https://github.com/saitejabandaru-in/excel-automation-toolkit/issues"
+
 [project.optional-dependencies]
 dev = [
+  "build>=1.2.0",
   "pytest>=8.0.0"
+]
+release = [
+  "build>=1.2.0",
+  "twine>=5.0.0"
 ]
 
 [project.scripts]
@@ -27,3 +54,6 @@ excel-automation = "excel_automation_toolkit.cli:main"
 [tool.setuptools.packages.find]
 include = ["excel_automation_toolkit*"]
 
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]

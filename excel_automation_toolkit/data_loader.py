@@ -18,7 +18,14 @@ def load_table(path: str | Path, sheet_name: str | int | None = 0) -> pd.DataFra
     if suffix == ".csv":
         return pd.read_csv(file_path)
     if suffix in {".xlsx", ".xlsm", ".xls"}:
-        return pd.read_excel(file_path, sheet_name=sheet_name)
+        table = pd.read_excel(file_path, sheet_name=sheet_name)
+        if isinstance(table, dict):
+            sheets = ", ".join(table)
+            raise ValueError(
+                "Expected a single worksheet. Pass a sheet name or index instead of "
+                f"sheet_name=None. Available sheets: {sheets}"
+            )
+        return table
 
     supported = ", ".join(sorted(SUPPORTED_EXTENSIONS))
     raise ValueError(f"Unsupported input type '{suffix}'. Supported types: {supported}")
@@ -60,4 +67,3 @@ def validate_columns(df: pd.DataFrame, required_columns: Iterable[str]) -> None:
         available = ", ".join(map(str, df.columns))
         expected = ", ".join(missing)
         raise ValueError(f"Missing required columns: {expected}. Available columns: {available}")
-

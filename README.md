@@ -93,14 +93,19 @@ tests/
 
 ## 🚀 How to Run
 
-1. Install Python dependencies:
+1. Install the package locally from the repository:
 ```bash
-pip install -r requirements.txt
+pip install .
+```
+
+For development:
+```bash
+pip install -e ".[dev]"
 ```
 
 2. Run the sample automation from the command line:
 ```bash
-python -m excel_automation_toolkit run \
+excel-automation run \
   --input data/raw/sample_sales.csv \
   --output data/processed/automation_report.xlsx \
   --date-column "Order Date" \
@@ -128,6 +133,12 @@ The generated workbook includes:
 - `Summary`
 - `Metadata`
 
+You can also run the module directly:
+
+```bash
+python -m excel_automation_toolkit run --input data/raw/sample_sales.csv
+```
+
 ---
 
 ## 🧪 Tests
@@ -135,9 +146,18 @@ The generated workbook includes:
 Install development dependencies and run:
 
 ```bash
-pip install -r requirements-dev.txt
+pip install -e ".[dev]"
 pytest
 ```
+
+Build and validate release artifacts:
+
+```bash
+python -m build
+python -m twine check dist/*
+```
+
+Tagged releases are automated through GitHub Actions. Push a semantic version tag such as `v0.1.0` to build the source distribution, wheel, and GitHub release assets.
 
 ---
 
